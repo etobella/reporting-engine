@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 
 ================
@@ -18,13 +18,15 @@ $ pip install xlsxwriter
 Usage
 =====
 
-An example of XLSX report for partners:
+An example of XLSX report for partners on a module called `module_name`:
 
 A python class ::
 
-    from odoo.addons.report_xlsx.report.report_xlsx import ReportXlsx
+    from odoo import models
 
-    class PartnerXlsx(ReportXlsx):
+    class PartnerXlsx(models.TransientModel):
+        _name = 'report.module_name.report_name'
+        _inherit = ''
     
         def generate_xlsx_report(self, workbook, data, partners):
             for obj in partners:
@@ -33,10 +35,6 @@ A python class ::
                 sheet = workbook.add_worksheet(report_name[:31])
                 bold = workbook.add_format({'bold': True})
                 sheet.write(0, 0, obj.name, bold)
-
-
-    PartnerXlsx('report.res.partner.xlsx',
-                'res.partner')
 
 To manipulate the ``workbook`` and ``sheet`` objects, refer to the
 `documentation <http://xlsxwriter.readthedocs.org/>`_ of ``xlsxwriter``.
@@ -48,14 +46,14 @@ A report XML record ::
         model="res.partner"
         string="Print to XLSX"
         report_type="xlsx"
-        name="res.partner.xlsx"
-        file="res.partner.xlsx"
+        name="module_name.report_name"
+        file="res_partner"
         attachment_use="False"
     />
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/143/10.0
+   :target: https://runbot.odoo-community.org/runbot/143/11.0
 
 Bug Tracker
 ===========

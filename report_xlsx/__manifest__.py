@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     'name': "Base report xlsx",
 
@@ -8,13 +8,16 @@
         Base module to create xlsx report""",
     'author': 'ACSONE SA/NV,'
               'Odoo Community Association (OCA)',
-    'website': "http://acsone.eu",
+    'website': "http://github.com/oca/reporting-engine",
     'category': 'Reporting',
-    'version': '10.0.1.0.1',
+    'version': '11.0.1.0.0',
     'license': 'AGPL-3',
     'external_dependencies': {'python': ['xlsxwriter']},
     'depends': [
-        'base',
+        'base', 'web',
+    ],
+    'data': [
+        'views/webclient_templates.xml',
     ],
     'installable': True,
 }
